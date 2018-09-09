@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Library</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="./scripts/ajax.js"></script>
+    <script src="./scripts/auth.js"></script>
+    <script src="./scripts/index.js"></script>
+    <script src="./scripts/utility.js"></script>
+    <script src="./scripts/views.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header id="menu">
+        <a href="#" class="menuItem" id="linkHome">Home</a>
+        <a href="#" class="menuItem" id="linkLogin">Login</a>
+        <a href="#" class="menuItem" id="linkRegister">Register</a>
+        <a href="#" class="menuItem" id="linkListBooks">List Books</a>
+        <a href="#" class="menuItem" id="linkCreateBook">Create Book</a>
+        <a href="#" class="menuItem" id="linkLogout">Logout</a>
+        <span id="loggedInUser"></span>
+    </header>
+    <main>
+        <section id="viewHome">
+            <h1>Welcome</h1>
+            Welcome to my book library.
+        </section>
+        <section id="viewLogin">
+          <h1>Please enter your credentials here</h1>
+          <form id="formLogin">
+            <div>Username:</div>
+            <div>
+              <input id="username" type="text" placeholder="Enter username.." class="form-control" value='test1'>
+            </div>
+            <div>Password:</div>
+            <div>
+              <input type="password" id="password" placeholder="Enter password.." password class="form-control" value='test1'>
+            </div>
+            <input class="btn btn-primary login" type="submit" value="Login" />
+          </form>
+        </section>
+        <section id="viewRegister">
+            <h1>Please register here</h1>
+            <form id="formRegister">
+                <div>Username:</div>
+                <div>
+                    <input type="text" name="username" required class="form-control"/>
+                </div>
+                <div>Password:</div>
+                <div>
+                    <input type="password" name="password" required class="form-control"/>
+                </div>
+                <div>
+                    <input type="submit" value="Register" class='btn btn-primary login' />
+                </div>
+            </form>
+        </section>
+        <section id="viewListBooks">
+          <table>
+            <tr>
+              <td>Title</td>
+              <td>Author</td>
+              <td>Description</td>
+            </tr>
+          </table>
+        </section>
+    </main>
+    <footer>Book Library - Simple SPA Application</footer>
+
+</body>
+</html>

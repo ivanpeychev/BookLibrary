@@ -1,0 +1,5 @@
+TODO:
+
+Make a default portfolio-like page for vakatastz.github.io that will show your different projects with an option to go to them.
+
+Include FancyBox gallery as a new 'Gallery'
