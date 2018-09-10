@@ -4,6 +4,13 @@ const signUrl = `https://baas.kinvey.com/user/${kinveyAppId}/`;
 const appSecret = `c14157192cfe4052a8e0bfa598a716e4`;
 let authHeaders = { 'Authorization': '', 'Content-Type': 'application/json' };
 let authData = { 'username': '', 'password': '' };
+$(document).ready(() => {
+    if (localStorage.getItem('userName') != null) {
+        $('#loggedInUser').text(`Hello, ${localStorage.getItem('userName')}`);
+    } else {
+        $('#loggedInUser').text('');
+    }
+});
 
 function login() {
     ajaxStart();
@@ -21,10 +28,11 @@ function login() {
       .then((response) => {
           displaySuccess('Yeah! You have successfully logged in.');
           localStorage.setItem('kinveyAuth', `Kinvey ${response._kmd.authtoken}`);
+          localStorage.setItem('userName', authData.username);
           showHideMenuLinks();
           listBooks();
-          $('#loggedInUser').text(`Hello, ${authData.username}`);
-          authHeaders.Authorization = localStorage.getItem('kinveyAuth');
+          $('#loggedInUser').text(`Hello, ${localStorage.getItem('userName')}`);
+          authHeaders.Authorization = 'Kinvey ' + localStorage.getItem('kinveyAuth');
           ajaxStop();
        })
       .catch(() => {
@@ -72,7 +80,7 @@ function register() {
           displaySuccess('You have successfully registered.');
           localStorage.setItem('kinveyAuth', `Kinvey ${response._kmd.authtoken}`);
           $('#loggedInUser').text(`Hello, ${authData.username}`);
-          authHeaders.Authorization = localStorage.getItem('kinveyAuth');
+          authHeaders.Authorization = 'Kinvey ' + localStorage.getItem('kinveyAuth');
           showHideMenuLinks();
           showHomeView();
           ajaxStop();
@@ -84,6 +92,7 @@ function register() {
 }
 
 function getRequest(resource) {
+    authHeaders.Authorization = localStorage.getItem('kinveyAuth');
     let request = {
         url: serviceUrl + resource,
         headers: authHeaders,

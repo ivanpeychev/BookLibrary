@@ -58,10 +58,7 @@ function editBook() { // TODO
 }
 
 function listBooks() {
-  let a = getRequest('books')
-  console.dir(a)
-
-
+  getBooks();
   showView('viewListBooks');
 }
 
