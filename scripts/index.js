@@ -1,5 +1,6 @@
 $(document).ready(() => {
   showHideMenuLinks();
+  showHomeView()
   $("#viewLogin input[value='Login']").on('click', ()=> {
     event.preventDefault();
     login();
@@ -16,17 +17,15 @@ $(document).ready(() => {
   // Bind the navigation menu links
   $("#linkHome").click(showHomeView);
   // Bind the form submit actions
-  $("#formLogin").submit(loginUser);
   $("form").submit(function(e) { e.preventDefault() });
   $("#linkLogin").click(showLoginView);
   $("#linkRegister").click(showRegisterView);
   $("#linkListBooks").click(listBooks);
-  $("#linkCreateBook").click(showCreateBookView);
+  $("#linkAddBook").click(showAddBookView);
   $("#linkLogout").click(logoutUser);
   // Bind the form submit buttons
   $("#buttonLoginUser").click(loginUser);
   $("#buttonRegisterUser").click(registerUser);
-  $("#buttonCreateBook").click(createBook);
+  $("#btnAddBook").click(addBook);
   $("#buttonEditBook").click(editBook);
-
 });

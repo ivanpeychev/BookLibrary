@@ -18,7 +18,7 @@
         <a href="#" class="menuItem" id="linkLogin">Login</a>
         <a href="#" class="menuItem" id="linkRegister">Register</a>
         <a href="#" class="menuItem" id="linkListBooks">List Books</a>
-        <a href="#" class="menuItem" id="linkCreateBook">Create Book</a>
+        <a href="#" class="menuItem" id="linkAddBook">Add Book</a>
         <a href="#" class="menuItem" id="linkLogout">Logout</a>
         <span id="loggedInUser"></span>
     </header>
@@ -58,16 +58,34 @@
             </form>
         </section>
         <section id="viewListBooks">
-          <table>
-            <thead>
+          <table class="table table-striped">
+            <thead class="thead-light">
                 <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Description</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody></tbody>
           </table>
+        </section>
+        <section id="viewAddBook">
+            <div>Title:</div>
+            <div>
+                <input type="text" id="textTitle" required class="form-control"/>
+            </div>
+            <div>Author:</div>
+            <div>
+                <input type="text" id="textAuthor" required class="form-control"/>
+            </div>
+            <div>Description:</div>
+            <div>
+                <input type="text" id="textDescription" class="form-control"/>
+            </div>
+            <div>
+                <button id='btnAddBook' class='btn btn-primary login'>Add book</button>
+            </div>
         </section>
     </main>
     <footer>Book Library - Simple SPA Application</footer>

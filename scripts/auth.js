@@ -29,6 +29,7 @@ function login() {
           displaySuccess('Yeah! You have successfully logged in.');
           localStorage.setItem('kinveyAuth', `Kinvey ${response._kmd.authtoken}`);
           localStorage.setItem('userName', authData.username);
+          localStorage.setItem('userId', response._id);
           showHideMenuLinks();
           listBooks();
           $('#loggedInUser').text(`Hello, ${localStorage.getItem('userName')}`);
@@ -98,13 +99,7 @@ function getRequest(resource) {
         headers: authHeaders,
         method: 'GET'
     }
-    $.ajax(request)
-        .then((response)=> {
-            return response;
-        })
-        .catch((error)=> {
-            displayError(error);
-        })
+    return request;
 }
 
 function postRequest(resource, query = '', data) {
@@ -114,11 +109,5 @@ function postRequest(resource, query = '', data) {
         method: 'POST',
         data: JSON.stringify(data)
     }
-    $.ajax(request)
-        .then((response)=> {
-            return response;
-        })
-        .catch((error)=> {
-            displayError(error);
-        });
+    return request;
 }

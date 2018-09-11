@@ -121,3 +121,7 @@ footer {
 header a {
   margin: auto;
 }
+
+#viewListBooks table tbody tr td {
+  text-align: left;
+}

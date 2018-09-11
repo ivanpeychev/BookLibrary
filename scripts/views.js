@@ -5,14 +5,14 @@ function showHideMenuLinks() {
     $("#linkLogin").hide();
     $("#linkRegister").hide();
     $("#linkListBooks").show();
-    $("#linkCreateBook").show();
+    $("#linkaddBook").show();
     $("#linkLogout").show();
   } else {
     // No logged in user
     $("#linkLogin").show();
     $("#linkRegister").show();
     $("#linkListBooks").hide();
-    $("#linkCreateBook").hide();
+    $("#linkaddBook").hide();
     $("#linkLogout").hide();
   }
 }
@@ -37,9 +37,9 @@ function showRegisterView() {
   showView('viewRegister');
 }
 
-function showCreateBookView() {
-  $('#formCreateBook').trigger('reset');
-  showView('viewCreateBook');
+function showAddBookView() {
+  $('#formAddBook').trigger('reset');
+  showView('viewAddBook');
 }
 
 function loginUser() { // TODO
@@ -51,17 +51,75 @@ function registerUser() { // TODO
 function logoutUser() { // TODO
 }
 
-function createBook() { // TODO
+function addBook() {
+  ajaxStart();
+  let data = {
+    "title": $('#textTitle').val(),
+    "author": $('#textAuthor').val(),
+    "description": $('#textDescription').val()
+  }
+  let request = postRequest('books', '', data);
+  $.ajax(request)
+    .then((response)=> {
+        displaySuccess('Book added');
+        ajaxStop();
+        listBooks();
+        $('#textTitle').val('');
+        $('#textAuthor').val('');
+        $('#textDescription').val('');
+    })
+    .catch((error)=> {
+        displayError(error);
+        ajaxStop();
+    });
 }
 
 function editBook() { // TODO
 }
 
 function listBooks() {
-  getBooks();
   showView('viewListBooks');
+  let request = getRequest('books');
+  ajaxStart();
+  $.ajax(request)
+      .then((response) => {
+          renderBooks(response);
+       })
+      .catch(() => {
+        ajaxStop();
+        displayError();
+      });
+}
+
+function renderBooks(books) {
+  $('#viewListBooks table tbody').empty();
+  for (let book of books) {
+    let btnDel = $('<button>').text('Delete').on('click', deleteBook)
+    let row = $('<tr>').attr('key', book._id);
+    $(row).append($('<td>').text(book.title));
+    $(row).append($('<td>').text(book.author));
+    $(row).append($('<td>').text(book.description));
+    $(row).append($('<td>').append(btnDel));
+    $('#viewListBooks table tbody').append(row);
+  }
+  ajaxStop();
 }
 
 function deleteBook() {
-  // TODO }
+  let id = $(this).parent().parent().attr('key');
+  let request = {
+    url: serviceUrl + 'books/' + id,
+    headers: authHeaders,
+    method: 'DELETE'
+  }
+  ajaxStart();
+  $.ajax(request)
+    .then(() => {
+      displaySuccess('Book deleted')
+      ajaxStop();
+      listBooks();
+    })
+    .catch((error) => {
+      displayError(error);
+    })
 }
