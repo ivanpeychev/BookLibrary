@@ -31,10 +31,10 @@ function login() {
           localStorage.setItem('userName', authData.username);
           localStorage.setItem('userId', response._id);
           showHideMenuLinks();
+          ajaxStop();
           listBooks();
           $('#loggedInUser').text(`Hello, ${localStorage.getItem('userName')}`);
           authHeaders.Authorization = 'Kinvey ' + localStorage.getItem('kinveyAuth');
-          ajaxStop();
        })
       .catch(() => {
         ajaxStop();

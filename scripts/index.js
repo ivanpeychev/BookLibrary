@@ -27,5 +27,5 @@ $(document).ready(() => {
   $("#buttonLoginUser").click(loginUser);
   $("#buttonRegisterUser").click(registerUser);
   $("#btnAddBook").click(addBook);
-  $("#buttonEditBook").click(editBook);
+  $("#btnUpdateBook").click(updateBook);
 });

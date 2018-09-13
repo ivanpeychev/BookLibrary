@@ -125,3 +125,7 @@ header a {
 #viewListBooks table tbody tr td {
   text-align: left;
 }
+
+button {
+  margin-right: 5px;
+}
